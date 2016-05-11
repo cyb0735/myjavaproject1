@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="false" />
+
+    <package name="default" namespace="/" extends="struts-default">
+       
+    </package>
+	
+    <!-- Add packages here -->
+	<package name="hellointerceptor" extends="struts-default">
+		<interceptors>
+			<interceptor name="helloInterceptor" class="com.inter.HelloInterceptor">
+			</interceptor>
+		</interceptors>
+			<action name="helloaction" class="com.action.HelloAction">
+				<result name="success">/success.jsp</result>
+				<result name="input">/reg.jsp</result>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="helloInterceptor"></interceptor-ref>
+			</action>
+		
+	</package>
+</struts>
